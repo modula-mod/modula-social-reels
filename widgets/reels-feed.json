@@ -1,0 +1,20 @@
+{
+  "id": "reels-feed",
+  "title": "Reels Feed",
+  "description": "Short-form video rail exposed by the Social Reels plugin.",
+  "category": "social",
+  "sizes": ["m", "l"],
+  "permissions": ["profile.read", "widget.render"],
+  "rendererType": "media-card",
+  "settings": {
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "component": "frontend/components/ReelsFeedCard.svelte",
+  "fallback": {
+    "type": "empty-state",
+    "message": "No reels available"
+  }
+}

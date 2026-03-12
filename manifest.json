@@ -1,0 +1,24 @@
+{
+  "id": "social-reels",
+  "name": "Social Reels",
+  "subtitle": "Extension plugin for Social Media",
+  "description": "Adds reels surfaces, Board widgets, and media navigation to the Social parent module.",
+  "category": "social",
+  "tags": ["plugin", "social", "reels"],
+  "author": "Modula",
+  "publisher": "modula-mod",
+  "pricing": {
+    "model": "free"
+  },
+  "assets": {
+    "icon": "icon.svg"
+  },
+  "release": {
+    "current": "1.0.0",
+    "channel": "stable"
+  },
+  "compatibility": {
+    "modula_core": ">=1.0.0",
+    "api_version": "1"
+  }
+}
