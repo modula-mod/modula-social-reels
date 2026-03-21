@@ -3,7 +3,7 @@
   "slug": "social-reels",
   "name": "Social Reels",
   "namespace": "modula.social.reels",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "package_kind": "plugin",
   "class": "hybrid",
   "placements": [
@@ -15,31 +15,107 @@
     "version_range": ">=1.0.0"
   },
   "extension_slots": [
-    { "target": "social.nav.secondary", "kind": "nav-item" },
-    { "target": "social.profile.media", "kind": "media-surface" },
-    { "target": "social.board.widgets", "kind": "widget-provider" }
+    {
+      "target": "social.nav.secondary",
+      "kind": "nav-item"
+    },
+    {
+      "target": "social.profile.media",
+      "kind": "media-surface"
+    },
+    {
+      "target": "social.board.widgets",
+      "kind": "widget-provider"
+    }
+  ],
+  "surfaces": [
+    {
+      "type": "sidebar_page",
+      "id": "reels",
+      "title": "Reels",
+      "parent_sidebar": "social-feed",
+      "route": "/social/reels"
+    },
+    {
+      "type": "standalone_page",
+      "id": "reels-home",
+      "title": "Reels",
+      "route": "/social/reels"
+    }
   ],
   "widgets": [
     "reels-feed"
   ],
   "permissions": [
     "profile.read",
-    "widget.render"
+    "widget.render",
+    "post.create"
   ],
   "capabilities_required": [
     "social.feed.read",
     "social.profile.media",
-    "social.board.widgets"
+    "social.board.widgets",
+    "social.post.create"
   ],
   "capabilities_optional": [
     "notifications.send",
     "analytics.events.write"
+  ],
+  "services_required": [
+    {
+      "id": "social.feed.v1",
+      "version_range": "^1.0.0",
+      "required": true
+    }
+  ],
+  "services_optional": [
+    {
+      "id": "analytics.events.v1",
+      "version_range": "^1.0.0",
+      "required": false
+    }
   ],
   "capabilities": [
     "feed.read",
     "widget.render",
     "social.board.widgets"
   ],
+  "events_emitted": [
+    "social.reel.created"
+  ],
+  "events_listened": [
+    "social.feed.updated",
+    "board.widget.added"
+  ],
+  "actions_provided": [
+    {
+      "id": "social.reel.publish",
+      "title": "Publish Reel",
+      "capability": "social.post.create",
+      "service": "social.feed.v1",
+      "permissions_required": [
+        "post.create"
+      ]
+    }
+  ],
+  "triggers_emitted": [
+    {
+      "id": "social.reel.created",
+      "title": "Reel Created"
+    }
+  ],
+  "jobs_provided": [],
+  "workflows_provided": [
+    {
+      "id": "social.reel.publish.notify",
+      "title": "Publish Reel and Notify",
+      "steps": [
+        "social.reel.publish",
+        "notifications.send.requested"
+      ]
+    }
+  ],
+  "agent_roles": [],
   "compatibility": {
     "modula_core": ">=1.0.0",
     "api_version": "1"
