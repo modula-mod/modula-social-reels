@@ -3,7 +3,7 @@
   "slug": "social-reels",
   "name": "Social Reels",
   "namespace": "modula.social.reels",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "package_kind": "plugin",
   "class": "hybrid",
   "placements": [
